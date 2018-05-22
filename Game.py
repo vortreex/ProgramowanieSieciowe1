@@ -19,11 +19,12 @@ class game(object):
             self.Pola.append(str(i))
 
     def wyswietlPlansze(self):
-        print('\n' + self.Pola[0] + LiniaPionowa + self.Pola[1] + LiniaPionowa + self.Pola[2])
+        print("\033[H\033[J")
+        print(self.Pola[0] + LiniaPionowa + self.Pola[1] + LiniaPionowa + self.Pola[2])
         print(LiniaPozioma)
         print(self.Pola[3] + LiniaPionowa + self.Pola[4] + LiniaPionowa + self.Pola[5])
         print(LiniaPozioma)
-        print(self.Pola[6] + LiniaPionowa + self.Pola[7] + LiniaPionowa + self.Pola[8] + '\n')
+        print(self.Pola[6] + LiniaPionowa + self.Pola[7] + LiniaPionowa + self.Pola[8])
 
     def wybierzPole(self, rola):
         self.ustawPole(rola)
@@ -31,7 +32,7 @@ class game(object):
         self.victoryConditionCheck()
 
     def ustawPole(self, rola):
-        Pole = input('Wybierz pole: ') - 1
+        Pole = int(input('Wybierz pole: ')) - 1
         if self.Pola[Pole] == Krzyzyk or self.Pola[Pole] == Kolko:
             print('To pole zostalo wybrane')
             self.wybierzPole(rola)

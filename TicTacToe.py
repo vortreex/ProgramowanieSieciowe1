@@ -21,7 +21,6 @@ if rola == Interface.Serwer:
 	##Server
 elif rola == Interface.Klient:
 	while True:
-		pass
 		TicTacToe = pickle.loads(sockt.recv(Interface.Buffer))
 		TicTacToe.wyswietlPlansze()
 		TicTacToe.victoryConditionCheck()
