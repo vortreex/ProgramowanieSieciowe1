@@ -22,7 +22,7 @@ class interface(object):
 			print('Jestes serwerem')
 			s=socket.socket(socket.AF_INET, socket.SOCK_STREAM, socket.IPPROTO_TCP)
 			s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-			s.bind(('', Port))
+			s.bind((str(socket.INADDR_ANY), Port))
 			s.listen(5)
 			return s, self.rola
 
