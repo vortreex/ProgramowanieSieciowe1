@@ -1,29 +1,28 @@
 import socket
-Buffer=1024
-Serwer='s'
-Klient='k'
-
+Buffer = 1024
+Serwer = 's'
+Klient = 'k'
+Port = 5555
 
 class interface(object):
 	def __init__(self):
-		self.selectCounter=0
-		self.selectCounterLimit=2
-		self.hostAndPort=('127.0.0.1', 5555)
-		self.rola=''
+		self.selectCounter = 0
+		self.selectCounterLimit = 2
+		self.rola = ''
 
 	def serverSelect(self):
 		print('Chcesz byc klientem czy serwerem (k/s)?')
 		self.rola = raw_input()
-		if self.rola=='k':
+		if self.rola == 'k':
 			print('Jestes klientem')
-			s=socket.socket(socket.AF_INET,socket.SOCK_STREAM,socket.IPPROTO_TCP)
-			s.connect(self.hostAndPort)		
+			s=socket.socket(socket.AF_INET, socket.SOCK_STREAM, socket.IPPROTO_TCP)
+			s.connect((raw_input('Podaj adres IP serwera: '), Port))
 			return s, self.rola
-		elif self.rola=='s':
+		elif self.rola == 's':
 			print('Jestes serwerem')
-			s=socket.socket(socket.AF_INET,socket.SOCK_STREAM,socket.IPPROTO_TCP)
-			s.setsockopt(socket.SOL_SOCKET,socket.SO_REUSEADDR,1)
-			s.bind(self.hostAndPort)
+			s=socket.socket(socket.AF_INET, socket.SOCK_STREAM, socket.IPPROTO_TCP)
+			s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+			s.bind(('', Port))
 			s.listen(5)
 			return s, self.rola
 
