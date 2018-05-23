@@ -33,7 +33,10 @@ class game(object):
 
     def ustawPole(self, rola):
         Pole = int(input('Wybierz pole: ')) - 1
-        if self.Pola[Pole] == Krzyzyk or self.Pola[Pole] == Kolko:
+        if Pole > 8 or Pole < 0:
+            print('Wybierz pole od 1 do 9')
+            self.wybierzPole(rola)
+        elif self.Pola[Pole] == Krzyzyk or self.Pola[Pole] == Kolko:
             print('To pole zostalo wybrane')
             self.wybierzPole(rola)
         else:
@@ -41,7 +44,7 @@ class game(object):
                 self.Pola[Pole] = Krzyzyk
             elif rola == 's':
                 self.Pola[Pole] = Kolko
-        self.wyborPolaCounter += 1
+            self.wyborPolaCounter += 1
 
     def victoryConditionCheck(self):
         for i in range(0, 3):
