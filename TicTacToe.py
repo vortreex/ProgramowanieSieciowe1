@@ -11,25 +11,21 @@ if rola == Interface.Serwer:
 	while True:
 		TicTacToe.wybierzPole(rola)
 		conn.send(pickle.dumps(TicTacToe))
-		TicTacToe = pickle.loads(conn.recv(Interface.Buffer)) 
+		TicTacToe = pickle.loads(conn.recv(Interface.Buffer))
 		TicTacToe.wyswietlPlansze()
-		TicTacToe.victoryConditionCheck()
 		if TicTacToe.victoryFlagX or TicTacToe.victoryFlagO or TicTacToe.victoryFlagTie:
+			TicTacToe.victoryConditionCheck()
 			conn.close()
 			sockt.close()
 			exit(0)
-	##Server
+
 elif rola == Interface.Klient:
 	while True:
-		pass
 		TicTacToe = pickle.loads(sockt.recv(Interface.Buffer))
 		TicTacToe.wyswietlPlansze()
-		TicTacToe.victoryConditionCheck()
-		TicTacToe.wybierzPole(rola)
 		if TicTacToe.victoryFlagX or TicTacToe.victoryFlagO or TicTacToe.victoryFlagTie:
+			TicTacToe.victoryConditionCheck()
 			sockt.close()
 			exit(0)
+		TicTacToe.wybierzPole(rola)
 		sockt.send(pickle.dumps(TicTacToe))
-
-	##klient
-
