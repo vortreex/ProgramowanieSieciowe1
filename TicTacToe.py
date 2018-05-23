@@ -1,6 +1,7 @@
 import Interface 
 import Game
 import pickle
+import Error
 
 [sockt, rola] = Interface.interface.start().serverSelect()
 TicTacToe = Game.game.start()
