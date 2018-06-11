@@ -32,7 +32,11 @@ class game(object):
         self.victoryConditionCheck()
 
     def ustawPole(self, rola):
-        Pole = int(input('Wybierz pole: ')) - 1
+        try:
+            Pole = int(input('Wybierz pole: ')) - 1
+        except ValueError:
+            print('Nie mam takiego pola, koniec gry')
+            exit()
         if Pole > 8 or Pole < 0:
             print('Wybierz pole od 1 do 9')
             self.wybierzPole(rola)
@@ -63,9 +67,10 @@ class game(object):
             print('Krzyzyk wygral!')
         elif self.victoryFlagO:
             print('Kolko wygralo!')
-        elif self.victoryFlagO == False and self.victoryFlagX == False and self.wyborPolaCounter == 9:
+        elif self.victoryFlagO is False and self.victoryFlagX is False and self.wyborPolaCounter == 9:
             print('Remis!')
             self.victoryFlagTie = True
+
 
     @staticmethod
     def start():

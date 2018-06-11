@@ -24,7 +24,7 @@ if rola == Interface.Serwer:
 		except socket.error as recerr:
 			Error.errorPrint(recerr)
 		except EOFError as eofe:
-			Error.ignoreError()
+			exit()
 		TicTacToe.wyswietlPlansze()
 		if TicTacToe.victoryFlagX or TicTacToe.victoryFlagO or TicTacToe.victoryFlagTie:
 			TicTacToe.victoryConditionCheck()
